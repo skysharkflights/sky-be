@@ -1,11 +1,16 @@
 const cors = require('cors')
 module.exports = app => {
     const collections = require("../controllers/collections.controller");
+  
     // Retrieve all Collections
     app.get("/collections/", cors({ origin: true }), collections.getCollections);
   
     // Retrieve a single Customer with customerId
     app.get("/collection/:collectionId", cors({ origin: true }), collections.getCollectionsById);
+
+    app.post('/collection/create', cors({ origin: true }), (req, res) => {
+      collections.createCollection(req, res);
+    });
 
     app.post('/collection/add/products', cors({ origin: true }), (req, res) => {
       collections.addCollectionProducts(req, res);

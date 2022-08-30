@@ -121,19 +121,19 @@ exports.deleteAll = (req, res) => {
   
 };
 
-// exports.createCollection = (req, res) => {
-//     // console.log('29 sep => ', req)
-//     Collections.createCollection(req, (err, data) => {
-//         if (err){
-//             res.status(500).send({
-//              message:
-//                err.message || "Some error occurred while creating Brand. [getBrandById]"
-//            }); 
-//          } else {
-//             res.send(data);
-//          }
-//     })
-// }
+exports.createCollection = (req, res) => {
+    // console.log('29 sep => ', req)
+    Collections.createCollection(req, (err, data) => {
+        if (err){
+            res.status(500).send({
+             message:
+               err.message || "Some error occurred while creating Brand. [getBrandById]"
+           }); 
+         } else {
+            res.send(data);
+         }
+    })
+}
 
 exports.addCollectionProducts = (req, res) => {
     // console.log('29 sep => ', req)

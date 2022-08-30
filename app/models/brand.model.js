@@ -18,17 +18,6 @@ Brand.getAll = result => {
     });
 };
 
-Brand.getAllSlides = result => {
-    sql.query("SELECT * FROM slides WHERE is_active = 1", (err, res) => {
-        if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-        }
-        result(null, res);
-    });
-};
-
 Brand.getBrandById = (brandId, result) => {
     sql.query(`SELECT * FROM brand WHERE brand_id = ${brandId}`, (err, res) => {
         if (err) {
@@ -39,20 +28,6 @@ Brand.getBrandById = (brandId, result) => {
         result(null, res);
     });
 }
-
-Brand.deleteBrandById = (brandId, result) => {
-    console.log('deleteBrandById brandId => ', brandId)
-    
-    sql.query(`DELETE FROM brand WHERE brand_id = ${brandId}`, (err, res) => {
-        if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-        }
-        result(null, res);
-    });
-}
-
 
 Brand.createBrand = (params, result) => {
     console.log('params.query => ', params.query)
@@ -84,72 +59,6 @@ Brand.createBrand = (params, result) => {
             }
         } else {
             res.data = null;
-        }
-        
-        result(null, res);
-    });
-}
-
-Brand.createSlide = (params, result) => {
-    console.log('params.query => ', params.query)
-
-    sql.query(`INSERT INTO slides VALUES (NULL, '${params.query.img}', '${params.query.name}', '${params.query.brandAlias}', ${params.query.brandId}, CURRENT_TIMESTAMP, ${params.query.isActive}, 0)`, (err, res) => {
-        if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-        }
-        res.status = res.affectedRows === 1 ? true : false;
-        if (res.status) {
-            res.data = {
-                id: params.query.brandId,
-                srcUrl: params.query.img,
-                thumbUrl: params.query.img,
-                name: params.query.brandAlias,
-                description: '',
-                homeSlider: true,
-                homeSliderOrder: 0,
-                isFollowing: false
-            }
-        } else {
-            res.data = null;
-        }
-        
-        result(null, res);
-    });
-}
-
-Brand.syncPic = (params, result) => {
-    console.log('params = params => ', params.query)
-    sql.query(`UPDATE users_dashboard SET user_pic = '${params.query.imageUrl}', brand_id = '${params.query.brand_id}', onboarding_complete = '${params.query.onboarding_complete}' WHERE ID = '${params.query.id}'`, (err, res) => {
-        if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-        }
-        
-        result(null, res);
-    });
-}
-
-Brand.updateSlideOrder = (params, result) => {
-    sql.query(`UPDATE slides SET slide_order = ${params.query.order} WHERE id = ${params.query.id}`, (err, res) => {
-        if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-        }
-        
-        result(null, res);
-    });
-}
-
-Brand.deleteSlide = (params, result) => {
-    sql.query(`DELETE FROM slides WHERE id = ${params.query.id}`, (err, res) => {
-        if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
         }
         
         result(null, res);

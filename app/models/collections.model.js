@@ -101,24 +101,24 @@ Collection.getCollections = result => {
     });
   };
 
-// Collection.createCollection = (params, result) => {
-//   console.log(params)
+Collection.createCollection = (params, result) => {
+  console.log(params)
 
-//   sql.query(`INSERT INTO collection VALUES (NULL,${params.query.brandId},'${params.query.description}','${params.query.image}','${params.query.name}','${params.query.thumbImage}','${params.query.gender}',1, null, 0, 'BRAND','${params.query.brandName}' )`, (err, res) => {
-//       if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//       return;
-//       }
-//       res.status = res.affectedRows === 1 ? true : false;
-//       if (res.status) {
-//           res.data = params.query;
-//       } else {
-//           res.data = null;
-//       }
-//       result(null, res);
-//   });
-// }
+  sql.query(`INSERT INTO collection VALUES (NULL,${params.query.brandId},'${params.query.description}','${params.query.image}','${params.query.name}','${params.query.thumbImage}','${params.query.gender}',1, null, 0, 'BRAND','${params.query.brandName}' )`, (err, res) => {
+      if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+      }
+      res.status = res.affectedRows === 1 ? true : false;
+      if (res.status) {
+          res.data = params.query;
+      } else {
+          res.data = null;
+      }
+      result(null, res);
+  });
+}
 
 Collection.addCollectionProducts = (params, result) => {
   let ids = params.query.productIds.split('|');

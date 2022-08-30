@@ -1,7 +1,8 @@
 
 module.exports = {
-    HOST: "strillmobiledb.c7vgsb3mtm05.us-east-2.rds.amazonaws.com",
-    USER: "admin",
-    PASSWORD: "masterNimda1",
-    DB: "strill_mobile_db"
+    HOST: "mysql.skysharkflights.com",
+    USER: "sky2flights",
+    PASSWORD: "Flights1!",
+    DB: "db_sky_flights",
+    POST: 3307
   };

@@ -1,6 +1,9 @@
 const cors = require('cors')
 module.exports = app => {
     const brand = require("../controllers/brand.controller");
+    // Create a new Customer
+    // app.post("/customers", customers.create);
+  
     // Retrieve all Customers
     app.get("/brands", cors({ origin: true }), brand.getAll);
   
@@ -13,23 +16,15 @@ module.exports = app => {
       // res.end('');
       });
 
-    app.get("/slides", cors({ origin: true }), brand.getAllSlides);
-
-    app.post('/slide/create', cors({ origin: true }), (req, res) => {
-      brand.createSlide(req, res);
-      });
-
-    app.post('/brand/sync', cors({ origin: true }), (req, res) => {
-      brand.syncPic(req, res);
-      });
-
-      app.post('/slide/order', cors({ origin: true }), (req, res) => {
-        brand.updateSlideOrder(req, res);
-      });
-
-      app.post('/slide/delete', cors({ origin: true }), (req, res) => {
-        brand.deleteSlide(req, res);
-      });
-
-      app.get("/brand/delete/:brandId", cors({ origin: true }), brand.deleteBrandById);
+    //Retrieve more products like some product
+    // app.get("/product/samebrand/:brandId", cors({ origin: true }), products.getProductsOfSameBrand);
+  
+    // Update a Customer with customerId
+    // app.put("/customers/:customerId", customers.update);
+  
+    // Delete a Customer with customerId
+    // app.delete("/customers/:customerId", customers.delete);
+  
+    // Create a new Customer
+    // app.delete("/customers", customers.deleteAll);
   };
